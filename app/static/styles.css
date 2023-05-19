@@ -1,6 +1,6 @@
 header, footer{
-    background-color: var(--primary);
-    color: var(--primary-inverse);
+    background-color: rgb(63, 63, 77);
+    color: black;
     font-size: 1.4em;
     font-weight: bold;
 }
@@ -10,3 +10,21 @@ body{
     grid-template-rows: auto 500px 1fr auto;
     margin: 0;
 }
+.boton{
+    background-color: black;
+    border-color: white;
+    color: white;
+    position: relative;
+    right: 20px;
+}
+.boton:hover{
+    border-color: grey;
+    color: grey;
+
+}
+.name-registered{
+    color: black;
+    position: relative;
+    left: 100px;
+}
+

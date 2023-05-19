@@ -1,3 +1,48 @@
 {% extends "base.html" %}
 
 {% block section %}
+    <section class="container">
+        <h1>Comprar</h1>
+        <form>
+
+            <div class="grid">
+                <label for="From">
+                    Moneda De Entrada
+                    <select id="From">
+                        {% for coin in monedas %}
+                          <option value="{{ coin }}">{{ coin }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                
+          
+                <label for="To">
+                    Moneda De Salida 
+                <select id="To" required>
+                    {% for coin in monedas %}
+                    <option value="{{ coin }}">{{ coin }}</option>
+                    {% endfor %}
+                </select>
+                </label>
+            </div>
+            <div class="grid">
+          
+                <label for="Q">
+                    Cantidad De Entrada
+                <input id="Q" name="Q" placeholder="Cantidad" required>
+                </label>
+                
+        
+                <label for="Q">
+                    Cantidad De Salida
+                <output id="Q" name="Q" placeholder="Cantidad" required>
+                </label>
+            </div>
+
+          
+            <!-- Button -->
+            <button type="submit">Submit</button>
+          
+          </form>
+    </section>
+{% endblock %}

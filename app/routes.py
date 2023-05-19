@@ -3,14 +3,24 @@ from flask import render_template
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+
+    datos_movimiento = [
+        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
+        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
+        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
+        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
+    ]
+
+    return render_template("index.html", data = datos_movimiento)
 
 @app.route("/purchase")
 def purchase():
-    pass
-    #return render_template("purchase.html")
+
+    coins = [
+        "Seleccione una moneda…", "EUR", "BTC", "ETH", "USDT", "BNB", "XRP", "ADA", "SOL", "DOT", "MATIC"
+    ]
+    return render_template("purchase.html", monedas = coins,)
 
 @app.route("/status")
 def status():
-    pass
-    #return render_template("status.html")
+    return render_template("status.html")

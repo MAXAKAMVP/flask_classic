@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,14 +13,13 @@
         <div>
             <nav>
                 <ul>
-                  <li><strong>App Inversiones Cripto</strong></li>
+                    <li class="name-registered"><strong>App Inversiones Cripto</strong></li>
                 </ul>
                 <ul>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#" role="button">Inicio</a></li>
-                  <li><a href="#" role="button">Comprar</a></li>
-                  <li><a href="#" role="button">Estado</a></li>
+
+                  <li><a href="/" role="button" id="Inicio" class="boton">Inicio</a></li>
+                  <li><a href="/purchase" role="button" class="boton">Comprar</a></li>
+                  <li><a href="/status" role="button" class="boton">Estado</a></li>
                 </ul>
               </nav>
         </div>
@@ -30,8 +29,8 @@
         {% endblock %}
     </section>
     <footer>
-        <div class="container">
-            &copy; 2023 MVP
+        <div class="name-registered">
+            &copy;MVP 2023 - todos los derechos reservados
         </div>     
     </footer>
 </body>
