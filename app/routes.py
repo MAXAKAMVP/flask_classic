@@ -1,17 +1,13 @@
 from app import app
 from flask import render_template
+from app.models import select_all
 
 @app.route("/")
 def index():
+    
+    movements = select_all()
 
-    datos_movimiento = [
-        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
-        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
-        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
-        {'date':'2023-05-18', 'time':'16:35:55', 'coin_from':'BTC', 'amount_from':'10.0', 'coin_to':'ETH', 'amount_to':'20.0'},
-    ]
-
-    return render_template("index.html", data = datos_movimiento)
+    return render_template("index.html", data = movements)
 
 @app.route("/purchase")
 def purchase():
