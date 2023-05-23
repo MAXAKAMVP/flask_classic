@@ -1,30 +1,6 @@
-import sqlite3
 import requests
-from __init__ import API_KEY, DB_SOURCE
-
-#funciones base de datos
-
-def select_all():
-    con = sqlite3.connect(DB_SOURCE)
-    cur = con.cursor()
-    res = cur.execute("select * from movements")
-
-    rows = res.fetchall()
-    columns = res.description
-
-    list_dict = []
-    
-    for f in rows:
-        dict = {}
-        position = 0
-        for c in columns:
-            dict[c[0]] = f[position]
-            position += 1
-        list_dict.append(dict)
-
-    con.close()
-
-    return list_dict
+from __init__ import API_KEY
+from connection import Connection
 """
 def insert_movement(date, time, coin_from, amount_from, coin_to, amount_to, p_u):
     con = sqlite3.connect(DB_SOURCE)
@@ -65,3 +41,24 @@ def buy_coin(currency, crypto):
 
 def crypto_trading()
 """
+# Funciones base de datos.
+
+def select_all():
+    connect = Connection("SELECT * from movements order by date DESC")
+    rows = connect.res.fetchall()
+    columns = connect.res.description
+                                                          
+    #objetivo crear una lista de diccionario con filas y columnas
+    dict_list = []
+    
+    for f in rows:
+        dict = {}
+        position = 0
+        for c in columns:
+            dict[c[0]] = f[position] 
+            posicion +=1
+        dict_list.append(dict)
+
+    connect.con.close()
+    
+    return dict_list
