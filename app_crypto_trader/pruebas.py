@@ -1,4 +1,5 @@
 import requests
+from utils import API_KEY
 
 """
 def get_rate():
@@ -31,8 +32,6 @@ def get_rate(base, quote):
 	
 rate = get_rate('EUR', 'USD')
 print(rate["rate"])
-
-API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
 
 class Buy_crypto(API_KEY):
     
