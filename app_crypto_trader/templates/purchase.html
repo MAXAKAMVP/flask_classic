@@ -3,14 +3,14 @@
 {% block section %}
     <section class="container">
         <h1>Comprar</h1>
-        <form>
+        <form action="/purchase" method="POST">
 
             <div class="grid">
                 <label for="From">
                     Moneda De Entrada
                     <select id="From">
                         {% for coin in monedas %}
-                          <option value="{{ coin }}">{{ coin }}</option>
+                          <option name = "From" value="{{ coin }}">{{ coin }}</option>
                         {% endfor %}
                     </select>
                 </label>
@@ -20,22 +20,22 @@
                     Moneda De Salida 
                 <select id="To" required>
                     {% for coin in monedas %}
-                    <option value="{{ coin }}">{{ coin }}</option>
+                    <option name = "To" value="{{ coin }}">{{ coin }}</option>
                     {% endfor %}
                 </select>
                 </label>
             </div>
             <div class="grid">
           
-                <label for="Q">
+                <label for="amount_in">
                     Cantidad De Entrada
-                <input id="Q" name="Q" placeholder="Cantidad" required>
+                <input id="amount_in" name="amount_in" placeholder="Cantidad" required>
                 </label>
                 
         
-                <label for="Q">
+                <label for="amount_out">
                     Cantidad De Salida
-                <output id="Q" name="Q" placeholder="Cantidad" required>
+                <output id="amount_in" name="amount_in" placeholder="Cantidad" required>
                 </label>
             </div>
             <div>
@@ -49,5 +49,13 @@
             <button type="submit">Submit</button>
           
           </form>
+
+          <article>
+            <ul>
+                {% for item in msg_error %}
+                <li>{{item}}</li>
+                {% endfor %}
+            </ul>
+          </article>
     </section>
 {% endblock %}
