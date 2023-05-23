@@ -1,6 +1,6 @@
 import sqlite3
 import requests
-from .utils import API_KEY, TODAY, DB_SOURCE
+from __init__ import API_KEY, DB_SOURCE
 
 #funciones base de datos
 

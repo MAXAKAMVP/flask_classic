@@ -1,5 +1,5 @@
 import requests
-from utils import API_KEY
+from __init__ import API_KEY
 
 """
 def get_rate():
