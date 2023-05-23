@@ -1,9 +1,9 @@
 import sqlite3
 import requests
-#from .utils import API_KEY, TODAY, TIME_NOW, DB_SOURCE
+from .utils import API_KEY, TODAY, DB_SOURCE
 
 #funciones base de datos
-"""
+
 def select_all():
     con = sqlite3.connect(DB_SOURCE)
     cur = con.cursor()
@@ -25,7 +25,7 @@ def select_all():
     con.close()
 
     return list_dict
-
+"""
 def insert_movement(date, time, coin_from, amount_from, coin_to, amount_to, p_u):
     con = sqlite3.connect(DB_SOURCE)
     cur = con.cursor()
