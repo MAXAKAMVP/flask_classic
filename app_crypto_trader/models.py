@@ -1,18 +1,7 @@
 import requests
-from __init__ import API_KEY
-from connection import Connection
-"""
-def insert_movement(date, time, coin_from, amount_from, coin_to, amount_to, p_u):
-    con = sqlite3.connect(DB_SOURCE)
-    cur = con.cursor()
-    instruction = f"INSERT INTO movementsV2 VALUES ('{TODAY}', '{TIME_NOW}', '{coin_from}', '{amount_from}', '{coin_to}', '{amount_to}')"
-    res = cur.execute(instruction)
-    con.commit()
-    con.close()
+from .__init__ import API_KEY
+from .connection import Connection
 
-if __name__ == "__main__":
-    insert_movement('2023-05-23', '4:44', 'BTC', '15', 'ETH', '25', '25')
-"""
 #Funciones requests api
 
 API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
@@ -56,7 +45,7 @@ def select_all():
         position = 0
         for c in columns:
             dict[c[0]] = f[position] 
-            posicion +=1
+            position +=1
         dict_list.append(dict)
 
     connect.con.close()

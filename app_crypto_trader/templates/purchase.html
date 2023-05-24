@@ -12,6 +12,7 @@
                         {% for coin in monedas %}
                           <option name = "From" value="{{ coin }}">{{ coin }}</option>
                         {% endfor %}
+                        <option value = "0" selected>Seleccione una moneda...</option>
                     </select>
                 </label>
                 
@@ -22,6 +23,7 @@
                     {% for coin in monedas %}
                     <option name = "To" value="{{ coin }}">{{ coin }}</option>
                     {% endfor %}
+                    <option value = "0" selected>Seleccione una moneda...</option>
                 </select>
                 </label>
             </div>

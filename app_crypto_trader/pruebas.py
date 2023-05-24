@@ -1,5 +1,5 @@
 import requests
-from __init__ import API_KEY
+from .__init__ import API_KEY
 
 """
 def get_rate():
@@ -19,7 +19,7 @@ print(v)
 def get_rate(base, quote):
     #r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{quote}?apikey={API_KEY}')
     #json = r.json()
-    #return json
+    #return json["rate"]
     
     json_to_falso = {
         "time": "2023-05-23T09:28:49.0000000Z",
@@ -43,6 +43,9 @@ class Buy_crypto(API_KEY):
         self.date = None
 
     def get_data(self, crypto, base = "EUR", API_KEY = API_KEY):
+
+        #service = Coin_api_service()
+
         r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{crypto}?apikey={API_KEY}')
         json = r.json()
         self.rate = json["rate"]
@@ -53,7 +56,7 @@ class Buy_crypto(API_KEY):
     def get_exchange(self, amount, rate):
         crypto_amount = amount / rate
         return crypto_amount
-    
+
 class Trade_crypto(API_KEY):
     
     def __init__(self, crypto):
@@ -72,5 +75,12 @@ class Trade_crypto(API_KEY):
         self.status_code = json["status_code"]
 
     def crypto_trade(amount, rate):
-        new_crypto_amount = amount * rate
+        new_crypto_amount = amount / rate
         return new_crypto_amount
+    
+class Coin_api_service:
+    def get_data(self, base, quote, API_KEY = API_KEY):
+        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{quote}?apikey={API_KEY}')
+        json = r.json()
+        return json
+        

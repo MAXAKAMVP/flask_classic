@@ -14,7 +14,7 @@ def index():
 def purchase():
 
     coins = [
-        "Seleccione una moneda…", "EUR", "BTC", "ETH", "USDT", "BNB", "XRP", "ADA", "SOL", "DOT", "MATIC"
+        "EUR", "BTC", "ETH", "USDT", "BNB", "XRP", "ADA", "SOL", "DOT", "MATIC"
     ]
 
     if request.method == "GET":

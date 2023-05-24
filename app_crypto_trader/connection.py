@@ -1,5 +1,5 @@
 import sqlite3
-from __init__ import DB_SOURCE
+from .__init__ import DB_SOURCE
 
 def select_all():
     con = sqlite3.connect(DB_SOURCE)
@@ -23,8 +23,6 @@ def select_all():
 
     return list_dict
 
-import sqlite3
-from app_crypto_trader import DB_SOURCE
 
 class Connection:
     def __init__(self,querySql,params = []):
