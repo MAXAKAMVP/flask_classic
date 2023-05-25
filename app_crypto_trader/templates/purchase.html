@@ -6,22 +6,22 @@
         <form action="/purchase" method="POST" novalidate>
 
             <div class="grid">
-                <label for="From">
+                <label for="base">
                     Moneda De Entrada
-                    <select id="From">
+                    <select id="base">
                         {% for coin in monedas %}
-                          <option name = "From" value="{{ coin }}">{{ dataForm.base.label }}</option>
+                          <option name = "base" value="{{ coin }}">{{ coin }}</option>
                         {% endfor %}
                         <option value = "0" selected>Seleccione una moneda...</option>
                     </select>
                 </label>
                 
           
-                <label for="To">
+                <label for="quote">
                     Moneda De Salida 
-                <select id="To" required>
+                <select id="quote" required>
                     {% for coin in monedas %}
-                    <option name = "To" value="{{ coin }}">{{ dataForm.qoute.label }}</option>
+                    <option name = "quote" value="{{ coin }}">{{ coin }}</option>
                     {% endfor %}
                     <option value = "0" selected>Seleccione una moneda...</option>
                 </select>
@@ -29,27 +29,27 @@
             </div>
             <div class="grid">
           
-                <label for="amount_in">
-                    {{ dataForm.amount_in.label}}
-                <input id="amount_in" name="amount_in" placeholder="Cantidad" required>
+                <label for="amount_base">
+                    Cantidad
+                <input id="amount_base" name="amount_base" placeholder="Cantidad" required>
                 </label>
                 
         
-                <label for="qoute">
-                    {{ dataForm.qoute.label }}
-                <output id="qoute" name="qoute" placeholder="..." required>
+                <label for="amount_qoute">
+                    {{ asdf }}
+                <output id="amount_qoute" name="amount_qoute" placeholder="..." required>
                 </label>
             </div>
             <div>
                 <label>
-                    {{ dataForm.pu.label }}
+                    {{ asdf }}
                 <output id="qoute" name="qoute" placeholder="..." required>
                 </label>
             </div>
 
           
             <!-- Button -->
-            <button type="submit">{{ dataForm.Submit }}</button>
+            <button type="submit">{{ Submit }}</button>
           
         </form>
 

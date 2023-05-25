@@ -1,15 +1,18 @@
-from datetime import date
+#from datetime import date
 from app_crypto_trader import app
 from flask import render_template, request
-from app_crypto_trader.models import *
-from app_crypto_trader.form import Form_inputs
+from app_crypto_trader.models_db import fetch_all
+#from app_crypto_trader.models import Crypto_exchange
+#from form import Form_inputs
+from app_crypto_trader.connection import Connection
+#from app_crypto_trader.utils import DB_SOURCE
 
 @app.route("/")
 def index():
-    
-    movements = select_all()
+    #db_connector = Connection("data/movimientos.sqlite")
+    data = fetch_all()
 
-    return render_template("index.html", data = movements)
+    return render_template("index.html", data = data)
 
 @app.route("/purchase", methods=["GET", "POST"])
 def purchase():

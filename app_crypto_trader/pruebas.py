@@ -30,24 +30,3 @@ get_rate = Get_exchange("EUR", "BTC")
 
 
 print(get_rate.get_data(API_KEY))
-
-
-"""
-class Exchange2:
-    def __init__(self, currency):
-        self.currency = currency
-        self.rate = None
-        self.status_code = None
-        self.time =None
-
-    def updateExchange(self,apikey):
-        r = requests.get( f'https://rest.coinapi.io/v1/exchangerate/{self.currency}/BTC?apikey={apikey}' )
-        response = r.json()
-        self.status_code = r.status_code
-        if r.status_code == 200:
-            self.rate = response['rate']
-            self.time = response['time']
-        else:
-            print(f"status: {r.status_code}, error: {response['error']}")
-            raise ModelError(f"status: {r.status_code}, error: {response['error']}")
-"""

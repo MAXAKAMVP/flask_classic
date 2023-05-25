@@ -4,10 +4,10 @@ from wtforms.validators import DataRequired,Length,ValidationError
 from time import strftime
 
 class Form_inputs(FlaskForm):
-    date_select = strftime(" %d/%m/%Y")
+    date_select = strftime(" %Y/%m/%d")
     hora_select = strftime(" %H:%M:%S")
 
-    base = StringField('From', validators=[DataRequired("")])
+    base = StringField('Base', validators=[DataRequired("")])
     quote = StringField('Quote', validators=[DataRequired("")])
-    amount = FloatField('Amount', validators=[DataRequired("El monto es requirido, debe ser mayor a 0")])
+    amount = FloatField('Amount_base', validators=[DataRequired("El monto es requirido, debe ser mayor a 0")])
     submit = SubmitField('Submit')
