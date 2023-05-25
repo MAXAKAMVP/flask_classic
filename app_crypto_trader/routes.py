@@ -2,6 +2,7 @@ from datetime import date
 from app_crypto_trader import app
 from flask import render_template, request
 from app_crypto_trader.models import *
+from app_crypto_trader.form import Form_inputs
 
 @app.route("/")
 def index():
@@ -12,7 +13,7 @@ def index():
 
 @app.route("/purchase", methods=["GET", "POST"])
 def purchase():
-
+    
     coins = [
         "EUR", "BTC", "ETH", "USDT", "BNB", "XRP", "ADA", "SOL", "DOT", "MATIC"
     ]
@@ -20,14 +21,6 @@ def purchase():
     if request.method == "GET":
         return render_template("purchase.html", monedas = coins,)
 
-    else:
-        errors = validateForm(request.form)
-
-        if errors:
-            return render_template("purchase.html", msg_error = errors)
-        else:
-
-            return request.form
         
 
 @app.route("/status")

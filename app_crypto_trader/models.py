@@ -1,53 +1,24 @@
 import requests
-from .__init__ import API_KEY
-from .connection import Connection
+from connection import DatabaseConnector
+from utils import API_KEY
 
-#Funciones requests api
+# Funciones requests api
 
-API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
-coin_to = "Lo que devuelve el formulario de la web"
-
-r = requests.get(f"https://rest.coinapi.io/v1/exchangerate/EUR/{coin_to}?apikey={API_KEY}")
-
-reply = r.json()
-if r.status_code == 200:
-    print(reply["rate"])
-else:
-    print(reply["error"])
-
-"""
-def exchange_rate(crypto):
-    url = f"https://rest.coinapi.io/v1/exchangerate/{coin_from}/EUR?apikey={API_KEY}"
-    res = requests.get(url)
-    r = res.jason()
-    rate = r["rate"]
-    return rate
-
-def buy_coin(currency, crypto):
-    rate = exchange_rate(crypto)
-    total_amount = currency / rate
-    return total_amount
-
-def crypto_trading()
-"""
-# Funciones base de datos.
-
-def select_all():
-    connect = Connection("SELECT * from movements order by date DESC")
-    rows = connect.res.fetchall()
-    columns = connect.res.description
-                                                          
-    #objetivo crear una lista de diccionario con filas y columnas
-    dict_list = []
+class Crypto_exchange:
     
-    for f in rows:
-        dict = {}
-        position = 0
-        for c in columns:
-            dict[c[0]] = f[position] 
-            position +=1
-        dict_list.append(dict)
+    def __init__(self, base, quote, amount_base, db_connector):
+        self.base = base
+        self.amount_base = amount_base
+        self.quote = quote
+        self.rate = None
+        self.status_code = None
+        self.time = None
+        self.date = None
+        self.db_connector = db_connector
 
-    connect.con.close()
-    
-    return dict_list
+    def get_data(self, API_KEY = API_KEY):
+        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{self.base}/{self.quote}?apikey={API_KEY}')
+        json = r.json()
+        self.status_code = r.status_code
+        self.rate = json["rate"]
+        self.date = json["time"]

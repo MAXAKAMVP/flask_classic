@@ -1,86 +1,53 @@
 import requests
-from .__init__ import API_KEY
+API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
 
-"""
-def get_rate():
-    url = 'https://rest.coinapi.io/v1/exchangerate/EUR/{crypto_currency}'
-    headers = {'X-CoinAPI-Key' : "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"}
-    response = requests.get(url, headers=headers)
-    json = response.json()
-    rate = json["rate"]
+class ModelError(Exception):
+    pass
 
-    return json
-
-#print(get_rate())
-v = get_rate()
-print(v)
-"""
-
-def get_rate(base, quote):
-    #r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{quote}?apikey={API_KEY}')
-    #json = r.json()
-    #return json["rate"]
-    
-    json_to_falso = {
-        "time": "2023-05-23T09:28:49.0000000Z",
-        "asset_id_base": "BTC",
-        "asset_id_quote": "USD",
-        "rate": 27291.970866279902385442486655
-    }
-    return json_to_falso
-    
-	
-rate = get_rate('EUR', 'USD')
-print(rate["rate"])
-
-class Buy_crypto(API_KEY):
-    
-    def __init__(self, crypto):
-        self.crypto = crypto
+class Get_exchange:
+    def __init__(self, base, quote):
+        self.base = base
+        self.quote = quote
         self.rate = None
         self.status_code = None
         self.time = None
-        self.date = None
 
-    def get_data(self, crypto, base = "EUR", API_KEY = API_KEY):
-
-        #service = Coin_api_service()
-
-        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{crypto}?apikey={API_KEY}')
-        json = r.json()
-        self.rate = json["rate"]
-        self.time = json["time"]
-        self.date = json["time"]
-        self.status_code = json["status_code"]
-
-    def get_exchange(self, amount, rate):
-        crypto_amount = amount / rate
-        return crypto_amount
-
-class Trade_crypto(API_KEY):
-    
-    def __init__(self, crypto):
-        self.crypto = crypto
-        self.rate = None
-        self.status_code = None
-        self.time = None
-        self.date = None
-
-    def get_data(self, base, quote, API_KEY = API_KEY):
-        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{quote}?apikey={API_KEY}')
-        json = r.json()
-        self.rate = json["rate"]
-        self.time = json["time"]
-        self.date = json["time"]
-        self.status_code = json["status_code"]
-
-    def crypto_trade(amount, rate):
-        new_crypto_amount = amount / rate
-        return new_crypto_amount
-    
-class Coin_api_service:
-    def get_data(self, base, quote, API_KEY = API_KEY):
-        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{base}/{quote}?apikey={API_KEY}')
-        json = r.json()
-        return json
+    def get_data(self, apikey):
+        r = requests.get( f'https://rest.coinapi.io/v1/exchangerate/{self.base}/{self.quote}?apikey={apikey}' )
+        response = r.json()
+        self.status_code = r.status_code
+        if r.status_code == 200:
+            self.rate = response['rate']
+            self.time = response['time']
+        else:
+            print(f"status: {r.status_code}, error: {response['error']}")
+            raise ModelError(f"status: {r.status_code}, error: {response['error']}")
+        return self.rate
         
+get_rate = Get_exchange("EUR", "BTC")
+
+# Cosulta rate de una moneda
+
+
+print(get_rate.get_data(API_KEY))
+
+
+"""
+class Exchange2:
+    def __init__(self, currency):
+        self.currency = currency
+        self.rate = None
+        self.status_code = None
+        self.time =None
+
+    def updateExchange(self,apikey):
+        r = requests.get( f'https://rest.coinapi.io/v1/exchangerate/{self.currency}/BTC?apikey={apikey}' )
+        response = r.json()
+        self.status_code = r.status_code
+        if r.status_code == 200:
+            self.rate = response['rate']
+            self.time = response['time']
+        else:
+            print(f"status: {r.status_code}, error: {response['error']}")
+            raise ModelError(f"status: {r.status_code}, error: {response['error']}")
+"""
