@@ -6,7 +6,7 @@ def fetch_all():
     conectar = Connection("SELECT * from exchange_rates order by date DESC")
     filas = conectar.res.fetchall()
     columnas= conectar.res.description
-                                                          
+
     lista_diccionario=[]
     
     for f in filas:

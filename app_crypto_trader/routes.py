@@ -1,7 +1,7 @@
 #from datetime import date
 from app_crypto_trader import app
 from flask import render_template, request
-from app_crypto_trader.models_db import fetch_all
+from app_crypto_trader.models_db import fetch_all, insert
 #from app_crypto_trader.models import Crypto_exchange
 #from form import Form_inputs
 from app_crypto_trader.connection import Connection
@@ -22,7 +22,10 @@ def purchase():
     ]
 
     if request.method == "GET":
-        return render_template("purchase.html", monedas = coins,)
+        return render_template("purchase.html", monedas = coins)
+    else:
+        insert()
+        return render_template("purchase.html", monedas = coins)
 
         
 
