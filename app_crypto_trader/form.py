@@ -1,13 +1,16 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField,StringField,FloatField,SubmitField
-from wtforms.validators import DataRequired,Length,ValidationError
+from wtforms import StringField, FloatField, SubmitField
+from wtforms.validators import DataRequired
 from time import strftime
 
-class Form_inputs(FlaskForm):
-    date_select = strftime(" %Y/%m/%d")
-    hora_select = strftime(" %H:%M:%S")
-
-    base = StringField('Base', validators=[DataRequired("")])
-    quote = StringField('Quote', validators=[DataRequired("")])
-    amount = FloatField('Amount_base', validators=[DataRequired("El monto es requirido, debe ser mayor a 0")])
+class Form_input(FlaskForm):
+    base = StringField('Moneda De Entrada', validators=[DataRequired()])
+    quote = StringField('Moneda De Salida', validators=[DataRequired()])
+    amount_base = FloatField('Cantidad', validators=[DataRequired()])
+    amount_quote = FloatField('Cantidad', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.date_select.data = strftime("%Y/%m/%d")
+        self.time_select.data = strftime("%H:%M:%S")

@@ -3,54 +3,49 @@
 {% block section %}
     <section class="container">
         <h1>Comprar</h1>
-        <form action="/purchase" method="POST" novalidate>
-
+        <form action="/purchase" method="POST">
+            {{ form.hidden_tag() }}
             <div class="grid">
                 <label for="base">
-                    Moneda De Entrada
-                    <select id="base">
-                        {% for coin in monedas %}
-                          <option name = "base" value="{{ coin }}">{{ coin }}</option>
+                    {{ form.base.label }}
+                    <select id="base" name="base" class="form-control" required>
+                        {% for c in currencies %}
+                        <option value="{{ coin }}">{{ coin }}</option>
                         {% endfor %}
-                        <option value = "0" selected>Seleccione una moneda...</option>
+                        <option value="0" selected>Seleccione una moneda...</option>
                     </select>
                 </label>
                 
-          
                 <label for="quote">
-                    Moneda De Salida 
-                <select id="quote" required>
-                    {% for coin in monedas %}
-                    <option name = "quote" value="{{ coin }}">{{ coin }}</option>
-                    {% endfor %}
-                    <option value = "0" selected>Seleccione una moneda...</option>
-                </select>
+                    {{ form.quote.label }}
+                    <select id="quote" name="quote" class="form-control" required>
+                        {% for c in currencies %}
+                        <option value="{{ coin }}">{{ coin }}</option>
+                        {% endfor %}
+                        <option value="0" selected>Seleccione una moneda...</option>
+                    </select>
                 </label>
             </div>
+        
             <div class="grid">
-          
                 <label for="amount_base">
-                    Cantidad
-                <input id="amount_base" name="amount_base" placeholder="Cantidad" required>
+                    {{ form.amount_base.label }}
+                    <input id="amount_base" name="amount_base" type="number" placeholder="Cantidad" required>
                 </label>
                 
-        
                 <label for="amount_qoute">
-                    {{ asdf }}
-                <output id="amount_qoute" name="amount_qoute" placeholder="..." required>
+                    <h1>{{ aA }}</h1>
                 </label>
-            </div>
-            <div>
+        
                 <label>
-                    {{ asdf }}
-                <output id="qoute" name="qoute" placeholder="..." required>
+                    asdf
+                    <output id="quote" name="quote" placeholder="..." required></output>
                 </label>
             </div>
-
-          
-            <!-- Button -->
-            <button type="submit">{{ Submit }}</button>
-          
+        
+            <!-- Buttons -->
+            <input type="submit" name = "Button" value="Calc" class="secondary">
+            <input type="submit" name = "Button" value="confirm">
         </form>
 
           <article>

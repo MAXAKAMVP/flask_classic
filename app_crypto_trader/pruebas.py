@@ -1,7 +1,12 @@
-import requests
-API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
+import sys
+print(sys.path)
 
-class ModelError(Exception):
+
+
+
+
+
+"""class ModelError(Exception):
     pass
 
 class Get_exchange:
@@ -30,3 +35,4 @@ get_rate = Get_exchange("EUR", "BTC")
 
 
 print(get_rate.get_data(API_KEY))
+"""
