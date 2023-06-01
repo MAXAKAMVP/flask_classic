@@ -3,54 +3,62 @@
 {% block section %}
     <section class="container">
         <h1>Comprar</h1>
-        <form action="/purchase" method="POST" novalidate>
 
-            <div class="grid">
-                <label for="base">
-                    Moneda De Entrada
-                    <select id="base">
-                        {% for coin in monedas %}
-                          <option name = "base" value="{{ coin }}">{{ coin }}</option>
-                        {% endfor %}
-                        <option value = "0" selected>Seleccione una moneda...</option>
-                    </select>
-                </label>
+        <form action="/purchase" method="POST">
+                <div class="grid">
                 
-          
-                <label for="quote">
-                    Moneda De Salida 
-                <select id="quote" required>
-                    {% for coin in monedas %}
-                    <option name = "quote" value="{{ coin }}">{{ coin }}</option>
-                    {% endfor %}
-                    <option value = "0" selected>Seleccione una moneda...</option>
-                </select>
-                </label>
+                    <label for="base">
+                        base
+                        <select id="base" name="base" type= "text" class="form-control", required>
+                            {% for c in currencies %}
+                            <option>{{ c }}</option>
+                            {% endfor %}
+                            <option value="0" selected>Seleccione una moneda...</option>
+                            {% if base %}
+                            <option value="{{base}}" selected>{{base}}</option>
+                            {% endif %}
+                        </select>
+                    </label>
+                    
+                    <label for="quote">
+                        quote
+                        <select id="quote" name="quote" type="text" class="form-control", required>
+                            {% for c in currencies %}
+                            <option>{{ c }}</option>
+                            {% endfor %}
+                            <option value="0" selected>Seleccione una moneda...</option>
+                            {% if base %}
+                            <option value="{{quote}}" selected>{{quote}}</option>
+                            {% endif %}
+                        </select>
+                    </label>
             </div>
-            <div class="grid">
-          
-                <label for="amount_base">
-                    Cantidad
-                <input id="amount_base" name="amount_base" placeholder="Cantidad" required>
-                </label>
-                
         
-                <label for="amount_qoute">
-                    {{ asdf }}
-                <output id="amount_qoute" name="amount_qoute" placeholder="..." required>
+            <div class="grid">
+                <label for="base_amount">
+                    cantidad a gastar
+                    <input id="base_amount" value="{{base_amount}}" name="base_amount" type="number" placeholder="Cantidad" required>
                 </label>
-            </div>
-            <div>
-                <label>
-                    {{ asdf }}
-                <output id="qoute" name="qoute" placeholder="..." required>
+        
+                <label for="amount_acquired">
+                    cantidad a comprar
+                
+                <table>
+                    <th scope="acquired_amount">{{acquired_amount}}</th>
+                </table>
                 </label>
-            </div>
 
-          
-            <!-- Button -->
-            <button type="submit">{{ Submit }}</button>
-          
+                <label>
+                    P.U.
+                <table>
+                    <th scope="P.U.">{{rate}}</th>
+                </table>
+                </label>
+            </div>
+        
+            <!-- Buttons -->
+            <input type="submit" name = "Button1" value="Calcular">
+            <input type="submit" name = "Button2" value="Confirmar">
         </form>
 
           <article>

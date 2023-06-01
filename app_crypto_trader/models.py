@@ -1,28 +1,23 @@
 import requests
-from connection import DatabaseConnector
-from utils import API_KEY
-from form import Form_inputs
+#from app_crypto_trader.utils import API_KEY
+#from app_crypto_trader.form import Form_input
+
+API_KEY = "A055EF56-5D39-4CE3-BDE4-44D71E7BE2D1"
 
 # Funciones requests api
 
-class Crypto_exchange:
-    
-    def __init__(self, base, quote, amount_base, db_connector):
-        self.base = base
-        self.amount_base = amount_base
-        self.quote = quote
-        self.rate = None
-        self.status_code = None
-        self.time = None
-        self.date = None
-        self.db_connector = db_connector
+def get_rate(base, quote):
+    r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{quote}/{base}?apikey={API_KEY}')
+    json = r.json()
+    #self.status_code = r.status_code
+    rate = json["rate"]
+    rate_float = float(rate)
+    return rate_float
 
-    def get_data(self, API_KEY = API_KEY):
-        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{self.base}/{self.quote}?apikey={API_KEY}')
-        json = r.json()
-        #self.status_code = r.status_code
-        self.rate = json["rate"]
-        self.date = json["time"]
-        return self.rate
+def get_amount_acquired(rate, base_amount):
+    acquired_amount = base_amount/rate
+    return acquired_amount
 
-
+rate = get_rate('EUR', 'BTC')
+get_acquired = get_amount_acquired(rate, 1000)
+print(get_acquired)

@@ -5,7 +5,7 @@ class Connection:
     def __init__(self,querySql,params = []):
         self.con = sqlite3.connect(DB_SOURCE)
         self.cur = self.con.cursor()
-        self.res = self.cur.execute(querySql,params)
+        self.res = self.cur.execute(querySql, params)
 
 """
 class DatabaseConnector:
