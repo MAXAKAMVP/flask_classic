@@ -3,7 +3,10 @@
 {% block section %}
     <section class="container">
         <h1>Lista de movimientos</h1>
-        
+        {% if data == [] %}
+        <h3>No hay movimientos que mostrar</h3>
+        <h3>Pulse comprar para comenzar a invertir</h3>
+        {% else %}
         <table role="grid">
             <thead>
                 <tr>
@@ -32,6 +35,7 @@
                     </td>
                 </tr>
                 {% endfor %}
+                {% endif %}
             </tbody>
         </table>
 

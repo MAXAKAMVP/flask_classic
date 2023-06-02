@@ -1,30 +1,26 @@
-import sqlite3
-#from app_crypto_trader.utils import DB_SOURCE
 from app_crypto_trader.connection import Connection
-#from app_crypto_trader.form import Form_input
 
 class Db_data:
-    query = "INSERT INTO exchange_rates (date, time, base, amount_base, quote, amount_quote) VALUES (?, ?, ?, ?, ?, ?)"
-    def fetch_all():
-        conectar = Connection("SELECT * from exchange_rates order by date DESC")
-        filas = conectar.res.fetchall()
-        columnas = conectar.res.description
+    def get_data(query):
+        connect = Connection(query)
+        rows = connect.res.fetchall()
+        columns = connect.res.description
 
-        lista_diccionario=[]
+        dict_list = []
         
-        for f in filas:
-            diccionario={}
-            posicion=0
-            for c in columnas:
-                diccionario[c[0]] = f[posicion] 
-                posicion +=1
-            lista_diccionario.append(diccionario)
+        for r in rows:
+            dict = {}
+            position = 0
+            for c in columns:
+                dict[c[0]] = r[position] 
+                position += 1
+            dict_list.append(dict)
 
-        conectar.con.close()
+        connect.con.close()
         
-        return lista_diccionario
+        return dict_list
 
-    def insert(data, query = query):
-        conectarInsert = Connection(query, data)
-        conectarInsert.con.commit()
-        conectarInsert.con.close()
+    def insert(resgitro_form):
+        connect_insert = Connection("INSERT INTO movements (date, time, base, amount_base, quote, amount_quote) VALUES (?, ?, ?, ?, ?, ?)", resgitro_form)
+        connect_insert.con.commit()
+        connect_insert.con.close()
