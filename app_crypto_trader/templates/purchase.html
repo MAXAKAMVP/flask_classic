@@ -3,33 +3,39 @@
 {% block section %}
     <section class="container">
         <h1>Comprar</h1>
-
+        <p class="errors">
+        {% for error in errors %}
+        <li class="error">{{ error }}</li>
+        {% endfor %}
+        </p>
         <form action="/purchase" method="POST">
                 <div class="grid">
                 
                     <label for="base">
-                        base
-                        <select id="base" name="base" type= "text" class="form-control", required>
-                            {% for c in currencies %}
-                            <option>{{ c }}</option>
-                            {% endfor %}
+                        Moneda base
+                        <select id="base" name="base" type="text" class="form-control">
                             <option value="0" selected>Seleccione una moneda...</option>
-                            {% if base %}
-                            <option value="{{base}}" selected>{{base}}</option>
+                            {% for c in currencies %}
+                            {% if base and base == c %}
+                            <option id="{{c}}" selected>{{ c }}</option>
+                            {% else %}
+                            <option id="{{c}}">{{ c }}</option>
                             {% endif %}
+                            {% endfor %}
                         </select>
                     </label>
                     
                     <label for="quote">
-                        quote
-                        <select id="quote" name="quote" type="text" class="form-control", required>
-                            {% for c in currencies %}
-                            <option>{{ c }}</option>
-                            {% endfor %}
+                        Moneda a adquirir
+                        <select id="quote" name="quote" type= "text" class="form-control">
                             <option value="0" selected>Seleccione una moneda...</option>
-                            {% if base %}
-                            <option value="{{quote}}" selected>{{quote}}</option>
+                            {% for c in currencies %}
+                            {% if quote and quote == c %}
+                            <option id="{{c}}" selected>{{ c }}</option>
+                            {% else %}
+                            <option id="{{c}}">{{ c }}</option>
                             {% endif %}
+                            {% endfor %}
                         </select>
                     </label>
             </div>
@@ -37,7 +43,7 @@
             <div class="grid">
                 <label for="base_amount">
                     cantidad a gastar
-                    <input id="base_amount" value="{{base_amount}}" name="base_amount" type="number" placeholder="Cantidad" required>
+                    <input id="base_amount" value="{{base_amount}}" name="base_amount" type="number" placeholder="Cantidad">
                 </label>
         
                 <label for="amount_acquired">
@@ -57,16 +63,11 @@
             </div>
         
             <!-- Buttons -->
-            <input id= "calcular" type="submit" name = "button" value="calcular">
-            <input id= "confirmar" type="submit" name = "button" value="confirmar">
+            <input id= "calcular" type="submit" name = "button" class = "button" value="calcular">
+            <input id= "confirmar" type="submit" name = "button" class = "button" value="confirmar">
         </form>
 
-          <article>
-            <ul>
-                {% for item in msg_error %}
-                <li>{{item}}</li>
-                {% endfor %}
-            </ul>
-          </article>
+
+
     </section>
 {% endblock %}

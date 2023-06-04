@@ -3,6 +3,9 @@
 {% block section %}
     <section class="container">
         <h1>Lista de movimientos</h1>
+        <p class="movement">
+        {{ msg }}
+        </p>
         {% if data == [] %}
         <h3>No hay movimientos que mostrar</h3>
         <h3>Pulse comprar para comenzar a invertir</h3>
@@ -16,7 +19,7 @@
                     <th>Cantidad</th>
                     <th>To</th>
                     <th>Cantidad</th>
-                    <th>Resultado</th>
+                    <th>P.U.</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +28,10 @@
                     <td>{{move.date}}</td>
                     <td>{{move.time}}</td>
                     <td>{{move.base}}</td>
-                    <td>{{move.amount_base}}</td>
+                    <td>{{move.amount_base|round(2)}}</td>
                     <td>{{move.quote}}</td>
-                    <td>{{move.amount_quote}}</td>
-                    <td>{{move.amount_base/move.amount_quote}}</td>
+                    <td>{{move.amount_quote|round(2)}}</td>
+                    <td>{{(move.amount_base/move.amount_quote)|round(10)}}</td>
                     <td></td>
                     <td>
 

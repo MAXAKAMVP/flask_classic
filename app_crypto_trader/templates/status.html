@@ -4,9 +4,36 @@
     <section class="container">
         <h1>Estado de las inversiones</h1>
             <tbody>
+                <label>
+                    Invertido
+                <table>
+                    <th scope="eur_invested">{{eur_invested}}€</th>
+                </table>
+                </label>
 
+                <label>
+                    Recuperado
+                <table>
+                    <th scope="eur_recovered">{{eur_recovered}}€</th>
+                </table>
+                </label>
+
+                <label>
+                    Valor de compra
+                <table>
+                    <th scope="purchase_value">{{purchase_value}}€</th>
+                </table>
+                </label>
+
+                <label>
+                    Valor actual
+                <table>
+                    <th scope="acquired_amount"></th>
+                    {% for crypto in cryptos_owned %}
+                    <li>{{crypto}}</li>
+                    {% endfor %}
+                </table>
+                </label>
             </tbody>
-        </table>
-
     </section>
 {% endblock %}
