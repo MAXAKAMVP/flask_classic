@@ -1,4 +1,4 @@
-from flask import render_template, request, flash
+from flask import render_template, request
 from app_crypto_trader import app
 from app_crypto_trader.models import Api_data
 from app_crypto_trader.models_db import Db_data
@@ -59,19 +59,9 @@ def status():
     for currency in currencies:
         if currency != 'EUR':
             amount_owned = Db_data.get_amount_owned(currency)
-            pu = Api_data.get_rate('BTC' ,'EUR')
-            amount_owned_eur = Api_data.get_amount_acquired(pu[1], amount_owned)
-            total = round(float(total + amount_owned_eur), 2)
+            if amount_owned >= 0:
+                pu = Api_data.get_rate('BTC' ,'EUR')
+                amount_owned_eur = Api_data.get_amount_acquired(pu[1], amount_owned)
+                total = round(float(total + amount_owned_eur), 2)
   
     return render_template("status.html", total=total, currencies=currencies, eur_invested=eur_invested, eur_recovered=eur_recovered, purchase_value=purchase_value) 
-
-"""
-                    {% for crypto in currencies %}
-                    {% if crypto != 'EUR' %}
-                        <li>{{crypto}}:</li>
-                    {% endif %}
-                    {% endfor %}
-                    {% for value in values %}
-                    <li>{{value}}:</li>
-                    {% endfor %}
-"""

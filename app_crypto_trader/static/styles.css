@@ -30,11 +30,6 @@ body{
 .error{
     color: red;
 }
-.button{
-    background-color: black;
-    border-color: white;
-    color: white;
-}
 .movement{
     color: green
 }
