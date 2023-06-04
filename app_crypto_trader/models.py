@@ -4,7 +4,7 @@ import requests
 # Requests api methods
 class Api_data:
     def get_rate(base, quote):
-        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{quote}/{base}?apikey={API_KEY2}')
+        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{quote}/{base}?apikey={API_KEY}')
             
         if r.status_code == 429:
             return "Ha consumido sus 100 peticiones diarias", None

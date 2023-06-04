@@ -54,18 +54,24 @@ def status():
     eur_recovered = Db_data.get_eur_recovered()
     purchase_value = eur_invested - eur_recovered
 
-    dict_cryptos_owned = Db_data.get_data("SELECT quote FROM movements WHERE quote != 'EUR'")
-    cryptos_owned = []
-    #cryptos_owned_values = []
-    for dict in dict_cryptos_owned:
-        crypto = dict["quote"]
-        cryptos_owned.append(crypto)
-        """
-        for c in cryptos_owned:
-            amount_owned = Db_data.get_amount_owned(c)
-            error, rate_to_eur = Api_data.get_rate(crypto, 'EUR')
-            amount_in_eur = Api_data.get_amount_acquired(rate_to_eur, amount_owned)
-            #cryptos_owned_values.append(amount_in_eur)
-        """
-    return render_template("status.html", cryptos_owned=cryptos_owned, eur_invested=eur_invested, eur_recovered=eur_recovered, purchase_value=purchase_value)#, amount_in_eur=amount_in_eur, cryptos_owned_values=cryptos_owned_values) 
+    currencies = ['EUR', 'BTC', 'ETH', 'USDT', 'BNB', 'XRP', 'ADA', 'SOL', 'DOT', 'MATIC']
+    total = 0
+    for currency in currencies:
+        if currency != 'EUR':
+            amount_owned = Db_data.get_amount_owned(currency)
+            pu = Api_data.get_rate('BTC' ,'EUR')
+            amount_owned_eur = Api_data.get_amount_acquired(pu[1], amount_owned)
+            total = round(float(total + amount_owned_eur), 2)
+  
+    return render_template("status.html", total=total, currencies=currencies, eur_invested=eur_invested, eur_recovered=eur_recovered, purchase_value=purchase_value) 
 
+"""
+                    {% for crypto in currencies %}
+                    {% if crypto != 'EUR' %}
+                        <li>{{crypto}}:</li>
+                    {% endif %}
+                    {% endfor %}
+                    {% for value in values %}
+                    <li>{{value}}:</li>
+                    {% endfor %}
+"""
